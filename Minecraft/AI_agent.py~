@@ -1,0 +1,55 @@
+from pyglet.window import key, mouse
+import random
+
+class Agent(object):
+    def __init__(self, Window):
+        self.window = Window
+        
+    def jump(self, js):
+        print "I'm going to jump!"
+        if self.window.dy == 0:
+            self.window.dy = js
+        
+    def move_right(self):
+        print "I'm going to move right!"
+        self.window.strafe[1] = 1
+
+    def move_left(self):
+        print "I'm going to move left!"
+        self.window.strafe[1] = -1
+
+    def move_forward(self):
+        print "I'm going to move forward!"
+        self.window.strafe[0] = -1
+
+    def move_backward(self):
+        print "I'm going to move backward!"
+        self.window.strafe[0] = 1
+
+    def turn_right(self):
+        #Turn the agent 90 degrees to the right
+        print "I'm going to turn right!"
+        self.window.rotation = (self.window.rotation[0] + 90, self.window.rotation[1])
+
+    def turn_left(self):
+        #Turn the agent 90 degrees to the right
+        print "I'm going to turn left!"
+        self.window.rotation = (self.window.rotation[0] - 90, self.window.rotation[1])
+        
+    def stop(self):
+        self.window.strafe[0] = 0
+        self.window.strafe[1] = 0
+
+    def get_move(self):
+        #NN part
+        self.turn_right()
+        
+        # move = random.randint(0,3)
+        # if move == 0:
+        #     self.move_right()
+        # elif move == 1:
+        #     self.move_left()
+        # elif move == 2:
+        #     self.move_forward()
+        # else:
+        #     self.move_backward()
